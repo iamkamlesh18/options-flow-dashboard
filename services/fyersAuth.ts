@@ -1,20 +1,9 @@
-import FyersAPI from "fyers-api-v3"
+export function getFyersLoginUrl() {
+  const clientId = "JUQWVFLO4G-100"
 
-/*
- Generates FYERS login URL
-*/
+  const redirect = encodeURIComponent(
+    "https://options-flow-dashboard1.vercel.app/callback"
+  )
 
-export function getFyersLoginUrl(){
-
- const fyers = new FyersAPI()
-
- fyers.setAppId(process.env.FYERS_APP_ID || "")
-
- return fyers.generateAuthCode({
-   client_id: process.env.FYERS_APP_ID || "",
-   redirect_uri: "https://options-flow-dashboard1.vercel.app/",
-   response_type: "code",
-   state: "sample"
- })
-
+  return `https://api.fyers.in/api/v3/generate-authcode?client_id=${clientId}&redirect_uri=${redirect}&response_type=code&state=sample`
 }
